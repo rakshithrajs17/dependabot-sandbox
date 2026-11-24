@@ -1,0 +1,31 @@
+version: 2
+
+updates:
+  # Positive control for gomod: uuid is pinned one minor behind.
+  - package-ecosystem: gomod
+    directory: /
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "test(deps)"
+
+  # Probe A: does `docker` at /infrastructure read infrastructure/build.yml?
+  # It should not. It should still bump the Dockerfile's alpine base (control).
+  - package-ecosystem: docker
+    directory: /infrastructure
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "test(deps)"
+
+  # Probe B: docker-compose on the same directory, but the Go image is in
+  # compose.yaml. This should be picked up, proving recognition is name-based.
+  - package-ecosystem: docker-compose
+    directory: /infrastructure
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "test(deps)"
