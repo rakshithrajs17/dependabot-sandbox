@@ -12,7 +12,9 @@ Throwaway repo to observe Dependabot behaviour before changing the real repos.
 | `docker-compose` | `infrastructure/compose.yaml` | `golang:1.26.10` -> `1.27.4`. | #1 |
 | `docker-compose` (digest) | `infrastructure/compose.golang.yaml` | tag `1.26.10` -> `1.27.4` **and** digest `87c65a68...` -> `70bd7dde...`. | #1 |
 | `docker` (older alpine) | `infrastructure/Golang.Dockerfile` | Pending: `golang:1.26.10-alpine3.23`. | — |
-| `docker-compose` (older alpine) | `infrastructure/compose.alpine.yaml` | Pending: `golang:1.26.10-alpine3.23`. | — |
+| `docker-compose` (older alpine) | `infrastructure/compose.alpine.yaml` | Go `1.26.10` -> `1.27.4`; suffix stayed `-alpine3.23`. | #1 |
+| `github-actions` (SHA pin) | `.github/workflows/probe.yml` | Pending: `actions/checkout` SHA v4.0.0 -> v7.x, SHA + comment. | — |
+| `github-actions` (tag) | `.github/workflows/probe.yml` | Pending: `actions/setup-go@v6.0.0` -> v6.5.0. | — |
 
 ## Conclusions so far
 
@@ -21,6 +23,7 @@ Throwaway repo to observe Dependabot behaviour before changing the real repos.
 - `gomod` updates module requirements and leaves the `go` directive/toolchain alone.
 - Compose tag bumps rewrite the `@sha256:` digest to the new tag's index digest in the same PR.
 - Without an ignore rule, `1.26.x` -> `1.27.x` is a semver-minor update and is proposed automatically. A `golang` `version-update:semver-minor`/`semver-major` ignore is required to keep Go majors manual.
+- The tag suffix is isolated: `-alpine3.23` only matches `-alpine3.23` candidates, so the alpine version is never bumped — only the Go part moves.
 
 ## Docker Hub note
 
