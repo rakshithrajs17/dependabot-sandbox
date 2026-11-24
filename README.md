@@ -27,10 +27,6 @@ Throwaway repo to observe Dependabot behaviour before changing the real repos.
 - `github-actions` updates SHA-pinned actions by rewriting both the SHA and the trailing `# vX.Y.Z` comment.
 - `github-actions` proposes majors too (`v6.0.0` -> `v7.1.0`); ignore `version-update:semver-major` if majors must stay manual.
 
-## Docker Hub note
-
-`golang:1.26.10-alpine*` only publishes `alpine3.23` and `alpine3.24`; there is no 3.21/3.22 for that Go patch.
-
 ## Run
 
 1. `git add -A && git commit -m "test: dependabot probes"`
