@@ -1,0 +1,39 @@
+name: self-repo-syntax
+
+on:
+  push:
+    branches:
+      - test/self-repo-syntax
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  direct:
+    name: direct $/ action
+    runs-on: ubuntu-latest
+    steps:
+      - name: Direct same-repo action
+        uses: $/.github/actions/echo-context
+        with:
+          label: direct
+
+  nested:
+    name: nested $/ action
+    runs-on: ubuntu-latest
+    steps:
+      - name: Same-repo action from a composite action
+        uses: $/.github/actions/nested
+
+  reusable-relative:
+    name: reusable workflow (relative path)
+    uses: ./.github/workflows/reusable.yml
+    with:
+      label: relative-caller
+
+  reusable-full-path:
+    name: reusable workflow (owner/repo@ref)
+    uses: rakshithrajs17/dependabot-sandbox/.github/workflows/reusable.yml@test/self-repo-syntax
+    with:
+      label: full-path-caller

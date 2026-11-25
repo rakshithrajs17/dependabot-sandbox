@@ -1,0 +1,9 @@
+name: nested
+description: Composite action that calls another same-repo action through $/.
+runs:
+  using: composite
+  steps:
+    - name: Call same-repo action from a composite action
+      uses: $/.github/actions/echo-context
+      with:
+        label: from-nested-composite
