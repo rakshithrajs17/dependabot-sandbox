@@ -1,4 +1,4 @@
 services:
   probe:
-    image: golang:1.26.10-alpine3.24
+    image: golang:1.27.4-alpine3.24
     platform: linux/amd64
