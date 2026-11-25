@@ -43,3 +43,9 @@ jobs:
     uses: rakshithrajs17/dependabot-sandbox-lib/.github/workflows/reusable-lib.yml@main
     with:
       label: cross-repo-caller
+
+  cross-repo-wrapper:
+    name: reusable workflow (cross-repo wrapper)
+    uses: rakshithrajs17/dependabot-sandbox-lib/.github/workflows/wrapper.yml@main
+    with:
+      label: via-wrapper
