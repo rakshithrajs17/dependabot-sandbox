@@ -12,6 +12,6 @@ jobs:
       # SHA-pinned with a version comment: expect SHA + comment to move to v7.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       # Tag-pinned: expect a minor update to v6.5.0.
-      - uses: actions/setup-go@v6.0.0
+      - uses: actions/setup-go@v7.1.0
         with:
           go-version: "1.26.10"
