@@ -37,3 +37,9 @@ jobs:
     uses: rakshithrajs17/dependabot-sandbox/.github/workflows/reusable.yml@test/self-repo-syntax
     with:
       label: full-path-caller
+
+  cross-repo-lib:
+    name: reusable workflow (cross-repo lib)
+    uses: rakshithrajs17/dependabot-sandbox-lib/.github/workflows/reusable-lib.yml@main
+    with:
+      label: cross-repo-caller
